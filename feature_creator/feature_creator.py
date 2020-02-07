@@ -14,6 +14,7 @@ def generateFeature(packageName, featureName):
 def aggreateFeature(featureName):
     utility.moveFolderToFolder("domain",featureName)
     utility.moveFolderToFolder("data",featureName)
+    utility.moveFolderToFolder(featureName,"../")
 
 
 #MODULE CREATOR
@@ -22,7 +23,7 @@ def generateModuleLayer(packageName,featureName,repositoryName,repositoryImpName
     utility.createFile(featureName+"Module")
     utility.writeFile(featureName+"Module",helper.generateModuleCode(packageName,featureName,repositoryName,repositoryImpName))
     utility.moveFileToFolder(featureName+"Module",featureName.lower()+"_module")
-    utility.moveFolderToFolder(featureName.lower()+"_module","di/modules")
+    utility.moveFolderToFolder(featureName.lower()+"_module","../di/modules")
 
 
 

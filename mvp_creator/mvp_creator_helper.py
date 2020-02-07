@@ -53,4 +53,27 @@ def genereateViewModuleCode(packageName,presenterName,viewType):
             "}")
     return code
 
+def generateFragmentViewCode(packageName,presenterName,viewType):
+
+        code = (f"package {packageName}.ui.{presenterName}\n\n"
+                f"import {packageName}.R\n"
+                f"import {packageName}.ui.base.BaseFragment\n"
+                f"import javax.inject.Inject\n\n"
+                f"class {presenterName}Fragment : BaseFragment(),{presenterName}Contract.View \n"
+                "{\n"
+                "@Inject\n"
+                f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n\n"
+                "}")
+        return code
+
+
+def generateActivityViewCode(packageName,presenterName,viewType):
+
+        code = (f"package {packageName}.ui.{presenterName}\n\n"
+                f"import {packageName}.R\n"
+                f"import {packageName}.ui.base.BaseActivity\n"
+                f"import javax.inject.Inject\n\n"
+                f"class {presenterName}Activity : BaseActivity(),{presenterName}Contract.View \n"
+                "{\n\n}")
+        return code
 
