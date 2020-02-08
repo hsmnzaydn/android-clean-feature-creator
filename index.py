@@ -10,15 +10,12 @@ choose = input()
 
 
 
-basePackage = "com.hsmnzaydn.term_commands_clean"
+basePackage = "com.basefy.burger_king"
 
 if choose == "1":
     print("Feature adı nedir?\n")
     featureName=input()
     feature.generateFeature(basePackage,featureName)
-    print("1- Presenter Katmanını Presenter olarak oluşturmak istiyorum\n"
-          "2- Presenter Katmanını ViewModel olarak oluşturmak istiyorum\n"
-          "3- Üstü kalsın\n")
 
 if choose == "2":
     print("Oluşturmak istediğiniz Presenter Adı\n")
@@ -31,3 +28,4 @@ if choose == "2":
 if choose == "3":
     print("Oluşturmak istediğiniz ViewModel Adı")
     viewModelName = input()
+

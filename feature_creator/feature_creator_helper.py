@@ -7,7 +7,7 @@ def generateApiCode(serviceFileName,basePackage,featureName):
     return code
 
 def generateRepositoryImpCode(basePackage,featureName,repositoryName,repositoryImplName):
-    code = (f"package {basePackage}.data.repository\n\n"
+    code = (f"package {basePackage}.{featureName}.data.repository\n\n"
             f"import retrofit2.Retrofit\n"
             "import com.google.gson.Gson\n"
             "import com.basefy.base_mvvm_libraries.network.BaseServicesImp\n"
@@ -34,7 +34,7 @@ def generateUseCaseCode(basePackage,featureName,repositoryName):
     return code
 
 def generateModuleCode(basePackage,featureName,repositoryName,repositoryImplName):
-        code = (f"package {basePackage}.di.modules.{featureName.lower()}\n\n"
+        code = (f"package {basePackage}.di.modules.{featureName.lower()}_module\n\n"
                 f"import com.google.gson.Gson\n"
                 f"import {basePackage}.{featureName}.data.repository.{repositoryImplName}\n"
                 f"import {basePackage}.{featureName}.domain.repository.{repositoryName}\n"

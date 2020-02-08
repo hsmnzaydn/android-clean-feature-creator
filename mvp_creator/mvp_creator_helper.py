@@ -55,25 +55,61 @@ def genereateViewModuleCode(packageName,presenterName,viewType):
 
 def generateFragmentViewCode(packageName,presenterName,viewType):
 
-        code = (f"package {packageName}.ui.{presenterName}\n\n"
+        code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
                 f"import {packageName}.R\n"
                 f"import {packageName}.ui.base.BaseFragment\n"
                 f"import javax.inject.Inject\n\n"
                 f"class {presenterName}Fragment : BaseFragment(),{presenterName}Contract.View \n"
                 "{\n"
                 "@Inject\n"
-                f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n\n"
-                "}")
+                f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n"
+                "private lateinit var root: View\n\n"
+                "override fun onCreateView(\n"
+                "inflater: LayoutInflater,\n"
+                "container: ViewGroup?,\n"
+                "savedInstanceState: Bundle?\n"
+                "): View? {\n"
+                f"root = inflater.inflate(R.layout.fragment_{presenterName.lower()}, container, false)\n"
+                "presenter.onAttach(this)\n"
+                "return root\n"
+                "}\n"
+                "}\n")
         return code
+
+
 
 
 def generateActivityViewCode(packageName,presenterName,viewType):
 
-        code = (f"package {packageName}.ui.{presenterName}\n\n"
+        code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
                 f"import {packageName}.R\n"
                 f"import {packageName}.ui.base.BaseActivity\n"
                 f"import javax.inject.Inject\n\n"
-                f"class {presenterName}Activity : BaseActivity(),{presenterName}Contract.View \n"
-                "{\n\n}")
+                f"class {presenterName}Activity : BaseActivity(),{presenterName}Contract.View "
+                "{\n"
+                "@Inject\n"
+                f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n\n"
+                "override fun onCreate(savedInstanceState: Bundle?){\n"
+                "super.onCreate(savedInstanceState)\n"
+                "setContentView(R.layout.xmlName)\n"
+                "presenter.onAttach(this)\n"
+                "} }")
         return code
+
+
+def generateViewInjectorCode(presenterName,viewType):
+
+        code = ("@ActivityScope\n"
+                "@ContributesAndroidInjector\n"
+                f"abstract fun {presenterName.lower()}{viewType}Injector(): {presenterName}{viewType}\n")
+        return code        
+
+def generatePresenterInjectorCode(presenterName,viewType):
+        code = ("@Provides\n"
+                "@Singleton\n"
+                f"fun provide{presenterName}Module(): {presenterName}Contract.Presenter<{presenterName}Contract.View>\n"
+                "{\n"
+                f"return {presenterName}Presenter()\n"
+                "}")
+        return code        
 

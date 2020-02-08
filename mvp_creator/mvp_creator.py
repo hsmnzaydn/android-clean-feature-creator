@@ -6,8 +6,9 @@ def generatePresenter(presenterName,packageName,viewType):
     utility.createFolder(presenterName.lower())
     genereateContractPart(presenterName,packageName)
     generatePresenterPart(presenterName,packageName)
-    generateModulePart(presenterName,packageName,viewType)
+    #generateModulePart(presenterName,packageName,viewType)
     generateView(presenterName,packageName,viewType)
+    manipulateViewInjector(viewType,presenterName)
     aggreatePresenter(presenterName)
 
 
@@ -19,8 +20,14 @@ def generateView(presenterName,packageName,viewType):
     if viewType == "Activity":   
         utility.createFile(presenterName+"Activity")
         utility.writeFile(presenterName+"Activity",helper.generateActivityViewCode(packageName,presenterName,viewType))
-        utility.moveFileToFolder(presenterName+"Activity",presenterName.lower()) 
+        utility.moveFileToFolder(presenterName+"Activity",presenterName.lower())
 
+
+def manipulateViewInjector(viewType,presenterName):
+    utility.addCodeToFile("../di/modules/ViewInjectorModules",helper.generateViewInjectorCode(presenterName,viewType))
+    utility.addCodeToFile("../di/modules/presenter_module/PresenterModule",helper.generatePresenterInjectorCode(presenterName,viewType))
+
+    
 def generateModulePart(presenterName,packageName,viewType):
     utility.createFolder(presenterName.lower()+"_module")
     utility.createFile(presenterName+"Module")
