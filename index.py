@@ -1,5 +1,6 @@
 import feature_creator.feature_creator as feature
 import mvp_creator.mvp_creator as mvp
+import mvvm_creator.mvvm_creator as mvvm
 
 print("Oluşturmak istediğiniz yapıyı seçiniz \n"
 "1- Feature oluşturmak istiyorum\n"
@@ -28,4 +29,8 @@ if choose == "2":
 if choose == "3":
     print("Oluşturmak istediğiniz ViewModel Adı")
     viewModelName = input()
+    print("Fragment için \"Fragment\" yazınız\n"
+          "Activity için \"Activity\" yazınız\n")
+    viewType= input()
+    mvvm.generateViewModel(viewModelName,basePackage,viewType)
 
