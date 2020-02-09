@@ -6,6 +6,7 @@ import com.basefy.testmvp.di.modules.ViewInjectorModules
 import com.basefy.testmvp.di.modules.AppModule
 import com.basefy.testmvp.di.modules.ServicesModules
 import com.basefy.testmvp.di.modules.category_module.CategoryModule
+import com.basefy.testmvp.di.modules.komut_module.KomutModule
 import com.basefy.testmvp.di.modules.presenter_module.PresenterModule
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -20,7 +21,8 @@ import javax.inject.Singleton
         ServicesModules::class,
         ViewInjectorModules::class,
         CategoryModule::class,
-        PresenterModule::class
+        PresenterModule::class,
+        KomutModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<TestApp> {

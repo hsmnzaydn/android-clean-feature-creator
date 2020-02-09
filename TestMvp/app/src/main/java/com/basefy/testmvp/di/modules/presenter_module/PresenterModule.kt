@@ -7,6 +7,8 @@ import com.basefy.testmvp.ui.command.CommandContract
 import com.basefy.testmvp.ui.command.CommandPresenter
 import com.basefy.testmvp.ui.home.HomeContract
 import com.basefy.testmvp.ui.home.HomePresenter
+import com.basefy.testmvp.ui.komut.KomutContract
+import com.basefy.testmvp.ui.komut.KomutPresenter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -30,5 +32,11 @@ class PresenterModule {
     @Singleton
     fun provideHomeModule(): HomeContract.Presenter<HomeContract.View> {
         return HomePresenter()
+    }
+
+    @Provides
+    @Singleton
+    fun provideKomutModule(): KomutContract.Presenter<KomutContract.View> {
+        return KomutPresenter()
     }
 }

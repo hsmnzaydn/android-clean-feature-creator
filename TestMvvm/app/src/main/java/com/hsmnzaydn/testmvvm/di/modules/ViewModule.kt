@@ -6,6 +6,7 @@ import com.hsmnzaydn.testmvvm.base.BaseInterfaces
 import com.hsmnzaydn.testmvvm.di.ViewModelFactory
 import com.hsmnzaydn.testmvvm.di.ViewModelKey
 import com.hsmnzaydn.testmvvm.ui.category.CategoryViewModel
+import com.hsmnzaydn.testmvvm.ui.komut.KomutViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -20,4 +21,9 @@ abstract class ViewModule {
     @IntoMap
     @ViewModelKey(CategoryViewModel::class)
     internal abstract fun categoryViewModel(viewModel: CategoryViewModel<BaseInterfaces>): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(KomutViewModel::class)
+    internal abstract fun komutViewModel(viewModel: KomutViewModel<BaseInterfaces>): ViewModel
 }

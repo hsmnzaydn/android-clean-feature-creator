@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".ui.category.CategoryActivity"/>
+        <activity android:name=".ui.komut.KomutActivity"/>
     </application>
 
 </manifest>
