@@ -11,7 +11,7 @@ choose = input()
 
 
 
-basePackage = "com.basefy.burger_king"
+basePackage = "Your Package"
 
 if choose == "1":
     print("Feature adı nedir?\n")

@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.basefy.testmvp"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation appDependencies.kotlin
+    implementation appDependencies.appCompat
+    implementation appDependencies.ktx
+    implementation appDependencies.constraintlayout
+    implementation appDependencies.appCompat
+    implementation appDependencies.retrofit
+    implementation appDependencies.retrofitConverter
+    implementation appDependencies.retrofitAdapter
+    implementation appDependencies.retrofitInterceptor
+    implementation appDependencies.rxJava
+    implementation appDependencies.rxAndroid
+    implementation appDependencies.dagger2
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt appDependencies.daggerKaptCompile
+    kapt appDependencies.daggerKaptProcessor
+    implementation appDependencies.dagger2Android
+    implementation appDependencies.dagger2AndroidSupport
+    implementation appDependencies.lifecycleViewModel
+    implementation appDependencies.lifecycleExtension
+    implementation appDependencies.retrofit
+    implementation appDependencies.cardView
+}
