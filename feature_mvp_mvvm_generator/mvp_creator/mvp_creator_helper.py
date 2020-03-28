@@ -4,6 +4,7 @@ def generateContractCode(packageName,presenterName):
     code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
             f"import {packageName}.ui.base.MvpPresenter\n"
             f"import {packageName}.ui.base.MvpView\n\n"
+            "//TODO: TÜM FONKSİYONLARIN ÜSTÜNE YORUM SATIRI KOYMAYI UNUTMA !!!!\n"
             f"interface {presenterName}Contract"
             "{\n\n"
             "interface View : MvpView {\n\n} \n"

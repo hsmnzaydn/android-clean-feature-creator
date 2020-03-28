@@ -25,6 +25,7 @@ def generateUseCaseCode(basePackage,featureName,repositoryName):
     code = (f"package {basePackage}.{featureName}.domain.usecase\n\n"
             f"import {basePackage}.{featureName}.domain.repository.{featureName}Repository\n"
             "import javax.inject.Inject\n\n"
+            "//TODO: TÜM FONKSİYONLARIN ÜSTÜNE YORUM SATIRI KOYMAYI UNUTMA !!!!\n"
             f"class {featureName}UseCase @Inject constructor(private val {featureName.lower()}Repository: {featureName}Repository)"
             "{\n\n}")
     return code
