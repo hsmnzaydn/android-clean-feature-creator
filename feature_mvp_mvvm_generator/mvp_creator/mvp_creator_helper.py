@@ -12,8 +12,7 @@ def generateContractCode(packageName,presenterName):
 
 def generatePresenterCode(packageName,presenterName):
     code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
-            f"import com.basefy.burger_king.ui.base.BasePresenter\n"
-            "import com.basefy.burger_king.ui.base.BaseResponseCallBack\n"
+            f"import {packageName}.ui.base.BasePresenter\n"
             "import javax.inject.Inject\n\n"
             f"class {presenterName}Presenter<V:{presenterName}Contract.View> @Inject constructor():\n"
             f"BasePresenter<V>(),{presenterName}Contract.Presenter<V>"
