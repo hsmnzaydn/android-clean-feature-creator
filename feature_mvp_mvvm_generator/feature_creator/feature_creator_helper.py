@@ -1,7 +1,7 @@
 import os
 
 def generateApiCode(serviceFileName,basePackage,featureName):
-    code = (f"package {basePackage}.data.api \n\n\n"
+    code = (f"package {basePackage}.{featureName}.data.api \n\n\n"
             f"interface {serviceFileName} "
             "{\n\n}")
     return code
@@ -22,9 +22,8 @@ def generateRepositoryCode(basePackage,featureName,repositoryName):
     
 def generateUseCaseCode(basePackage,featureName,repositoryName):
     
-    code = (f"package {basePackage}.{featureName}.domain.usecases\n\n"
+    code = (f"package {basePackage}.{featureName}.domain.usecase\n\n"
             f"import {basePackage}.{featureName}.domain.repository.{featureName}Repository\n"
-            f"import {basePackage}.base.BaseResponseCallback\n"
             "import javax.inject.Inject\n\n"
             f"class {featureName}UseCase @Inject constructor(private val {featureName.lower()}Repository: {featureName}Repository)"
             "{\n\n}")
