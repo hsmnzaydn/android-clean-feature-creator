@@ -9,10 +9,8 @@ def generateApiCode(serviceFileName,basePackage,featureName):
 def generateRepositoryImpCode(basePackage,featureName,repositoryName,repositoryImplName):
     code = (f"package {basePackage}.{featureName}.data.repository\n\n"
             f"import retrofit2.Retrofit\n"
-            "import com.google.gson.Gson\n"
-            "import com.basefy.base_mvvm_libraries.network.BaseServicesImp\n"
             f"import {basePackage}.{featureName}.domain.repository.{featureName}Repository\n\n"
-            f"class {repositoryImplName}(private val retrofit:Retrofit,\ngson:Gson):BaseServicesImp(retrofit,gson),{repositoryName}"
+            f"class {repositoryImplName}(private val retrofit:Retrofit):BaseServicesImp(retrofit),{repositoryName}"
             "{\n\n}")
     return code
 
@@ -25,7 +23,6 @@ def generateRepositoryCode(basePackage,featureName,repositoryName):
 def generateUseCaseCode(basePackage,featureName,repositoryName):
     
     code = (f"package {basePackage}.{featureName}.domain.usecases\n\n"
-            f"import com.basefy.base_mvvm_libraries.network.BaseServiceCallback\n"
             f"import {basePackage}.{featureName}.domain.repository.{featureName}Repository\n"
             f"import {basePackage}.base.BaseResponseCallback\n"
             "import javax.inject.Inject\n\n"
@@ -35,7 +32,6 @@ def generateUseCaseCode(basePackage,featureName,repositoryName):
 
 def generateModuleCode(basePackage,featureName,repositoryName,repositoryImplName):
         code = (f"package {basePackage}.di.modules.{featureName.lower()}_module\n\n"
-                f"import com.google.gson.Gson\n"
                 f"import {basePackage}.{featureName}.data.repository.{repositoryImplName}\n"
                 f"import {basePackage}.{featureName}.domain.repository.{repositoryName}\n"
                 "import dagger.Module\n"
@@ -47,9 +43,9 @@ def generateModuleCode(basePackage,featureName,repositoryName,repositoryImplName
                 "{\n\n"
                 "@Provides\n"
                 "@Singleton\n"
-                f"fun provide{repositoryName}(retrofit: Retrofit, gson: Gson): {repositoryName} "
+                f"fun provide{repositoryName}(retrofit: Retrofit): {repositoryName} "
                 "{\n"
-                f"return {repositoryImplName}(retrofit,gson)"
+                f"return {repositoryImplName}(retrofit)"
                 "}\n"
                 "}")
         return code        

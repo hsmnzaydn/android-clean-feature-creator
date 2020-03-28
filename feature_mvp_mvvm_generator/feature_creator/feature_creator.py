@@ -2,7 +2,7 @@ import os
 import util.utility as utility
 import feature_creator.feature_creator_helper as helper 
 
-def generateFeature(packageName, featureName):
+def generateFeature(packageName, featureName): 
    utility.createFolder(featureName)
    repositoryName = featureName+"Repository"
    repositoryImpName= featureName+"RepositoryImpl" 
