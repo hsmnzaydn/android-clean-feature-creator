@@ -11,7 +11,9 @@ def generateRepositoryImpCode(basePackage,featureName,repositoryName,repositoryI
             f"import retrofit2.Retrofit\n"
             f"import {basePackage}.{featureName}.domain.repository.{featureName}Repository\n\n"
             f"class {repositoryImplName}(private val retrofit:Retrofit):BaseServicesImp(retrofit),{repositoryName}"
-            "{\n\n}")
+            "{\n"
+            f"fun get{featureName}Services(): {featureName}Services = retrofit.create({featureName}Services::class.java)\n"
+            "\n}")
     return code
 
 def generateRepositoryCode(basePackage,featureName,repositoryName):

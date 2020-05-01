@@ -2,8 +2,6 @@
 
 def generateContractCode(packageName,presenterName):
     code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
-            f"import {packageName}.ui.base.MvpPresenter\n"
-            f"import {packageName}.ui.base.MvpView\n\n"
             "//TODO: TÜM FONKSİYONLARIN ÜSTÜNE YORUM SATIRI KOYMAYI UNUTMA !!!!\n"
             f"interface {presenterName}Contract"
             "{\n\n"
@@ -13,7 +11,6 @@ def generateContractCode(packageName,presenterName):
 
 def generatePresenterCode(packageName,presenterName):
     code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
-            f"import {packageName}.ui.base.BasePresenter\n"
             "import javax.inject.Inject\n\n"
             f"class {presenterName}Presenter<V:{presenterName}Contract.View> @Inject constructor():\n"
             f"BasePresenter<V>(),{presenterName}Contract.Presenter<V>"
@@ -57,21 +54,20 @@ def generateFragmentViewCode(packageName,presenterName,viewType):
 
         code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
                 f"import {packageName}.R\n"
-                f"import {packageName}.ui.base.BaseFragment\n"
                 f"import javax.inject.Inject\n\n"
                 f"class {presenterName}Fragment : BaseFragment(),{presenterName}Contract.View \n"
                 "{\n"
                 "@Inject\n"
                 f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n"
-                "private lateinit var root: View\n\n"
+                f"private lateinit var binding:{viewType}{presenterName}Binding\n\n"
                 "override fun onCreateView(\n"
                 "inflater: LayoutInflater,\n"
                 "container: ViewGroup?,\n"
                 "savedInstanceState: Bundle?\n"
                 "): View? {\n"
-                f"root = inflater.inflate(R.layout.fragment_{presenterName.lower()}, container, false)\n"
+                f"binding = {viewType}{presenterName}Binding.inflate(layoutInflater)\n"
                 "presenter.onAttach(this)\n"
-                "return root\n"
+                "return binding.root\n"
                 "}\n"
                 "}\n")
         return code
@@ -83,15 +79,16 @@ def generateActivityViewCode(packageName,presenterName,viewType):
 
         code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
                 f"import {packageName}.R\n"
-                f"import {packageName}.ui.base.BaseActivity\n"
                 f"import javax.inject.Inject\n\n"
                 f"class {presenterName}Activity : BaseActivity(),{presenterName}Contract.View "
                 "{\n"
                 "@Inject\n"
-                f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n\n"
+                f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n"
+                f"private lateinit var binding:{viewType}{presenterName}Binding\n\n"
                 "override fun onCreate(savedInstanceState: Bundle?){\n"
                 "super.onCreate(savedInstanceState)\n"
-                "setContentView(R.layout.xmlName)\n"
+                f"binding = {viewType}{presenterName}Binding.inflate(layoutInflater)\n"
+                "setContentView(binding.root)\n"
                 "presenter.onAttach(this)\n"
                 "} }")
         return code
