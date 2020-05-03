@@ -55,20 +55,15 @@ def generateFragmentViewCode(packageName,presenterName,viewType):
         code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
                 f"import {packageName}.R\n"
                 f"import javax.inject.Inject\n\n"
-                f"class {presenterName}Fragment : BaseFragment(),{presenterName}Contract.View \n"
+                f"class {presenterName}Fragment : BaseFragment<{viewType}{presenterName}Binding>(),{presenterName}Contract.View \n"
                 "{\n"
                 "@Inject\n"
                 f"lateinit var presenter: {presenterName}Contract.Presenter<{presenterName}Contract.View>\n"
-                f"private lateinit var binding:{viewType}{presenterName}Binding\n\n"
-                "override fun onCreateView(\n"
-                "inflater: LayoutInflater,\n"
-                "container: ViewGroup?,\n"
-                "savedInstanceState: Bundle?\n"
-                "): View? {\n"
+                "override fun initUI(){\n"
                 f"binding = {viewType}{presenterName}Binding.inflate(layoutInflater)\n"
                 "presenter.onAttach(this)\n"
-                "return binding.root\n"
                 "}\n"
+                "override fun againOpened(){\n}"
                 "}\n")
         return code
 
