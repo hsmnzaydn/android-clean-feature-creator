@@ -1,7 +1,9 @@
 
 
 def generateContractCode(packageName,presenterName):
-    code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
+    code = (f"package {packageName}.ui.{presenterName.lower()}\n"
+            f"import {packageName}.base.MvpPresenter\n"
+            f"import {packageName}.base.MvpView\n\n"
             "//TODO: TÜM FONKSİYONLARIN ÜSTÜNE YORUM SATIRI KOYMAYI UNUTMA !!!!\n"
             f"interface {presenterName}Contract"
             "{\n\n"
@@ -11,6 +13,7 @@ def generateContractCode(packageName,presenterName):
 
 def generatePresenterCode(packageName,presenterName):
     code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
+            f"import {packageName}.base.BasePresenter\n"
             "import javax.inject.Inject\n\n"
             f"class {presenterName}Presenter<V:{presenterName}Contract.View> @Inject constructor():\n"
             f"BasePresenter<V>(),{presenterName}Contract.Presenter<V>"
@@ -21,10 +24,12 @@ def generatePresenterModuleCode(packageName,presenterName):
     code = (f"package {packageName}.di.modules.{presenterName.lower()}_module\n\n"
             f"import {packageName}.scopes.ActivityScope\n"
             f"import {packageName}.ui.{presenterName.lower()}.{presenterName}Contract\n"
+            "import dagger.hilt.android.components.ApplicationComponent\n"
             f"import {packageName}.ui.{presenterName.lower()}.{presenterName}Presenter\n"
             "import dagger.Module\n"
             "import dagger.Provides\n\n\n"
             "@Module\n"
+            "@InstallIn(ApplicationComponent::class)\n"
             f"class {presenterName}Module"
             "{\n"
             "@ActivityScope\n"
@@ -54,7 +59,10 @@ def generateFragmentViewCode(packageName,presenterName,viewType):
 
         code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
                 f"import {packageName}.R\n"
+                f"import {packageName}.base.BaseFragment\n"
+                "import dagger.hilt.android.AndroidEntryPoint\n"
                 f"import javax.inject.Inject\n\n"
+                "@AndroidEntryPoint\n"
                 f"class {presenterName}Fragment : BaseFragment<{viewType}{presenterName}Binding>(),{presenterName}Contract.View \n"
                 "{\n"
                 "@Inject\n"
@@ -89,12 +97,6 @@ def generateActivityViewCode(packageName,presenterName,viewType):
         return code
 
 
-def generateViewInjectorCode(presenterName,viewType):
-
-        code = ("@ActivityScope\n"
-                "@ContributesAndroidInjector\n"
-                f"abstract fun {presenterName.lower()}{viewType}Injector(): {presenterName}{viewType}\n")
-        return code        
 
 def generatePresenterInjectorCode(presenterName,viewType):
         code = ("@Provides\n"

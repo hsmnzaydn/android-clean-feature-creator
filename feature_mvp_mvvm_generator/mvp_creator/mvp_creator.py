@@ -24,7 +24,7 @@ def generateView(presenterName,packageName,viewType):
 
 
 def manipulateViewInjector(viewType,presenterName):
-    utility.addCodeToFile("../di/modules/ViewInjectorModules",helper.generateViewInjectorCode(presenterName,viewType))
+    #utility.addCodeToFile("../di/modules/ViewInjectorModules",helper.generateViewInjectorCode(presenterName,viewType))
     utility.addCodeToFile("../di/modules/presenter_module/PresenterModule",helper.generatePresenterInjectorCode(presenterName,viewType))
 
     
