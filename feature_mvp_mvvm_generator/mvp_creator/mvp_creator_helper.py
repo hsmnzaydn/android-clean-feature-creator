@@ -82,7 +82,10 @@ def generateActivityViewCode(packageName,presenterName,viewType):
 
         code = (f"package {packageName}.ui.{presenterName.lower()}\n\n"
                 f"import {packageName}.R\n"
+                f"import {packageName}.base.BaseActivity\n"
+                "import dagger.hilt.android.AndroidEntryPoint\n"
                 f"import javax.inject.Inject\n\n"
+                "@AndroidEntryPoint\n"
                 f"class {presenterName}Activity : BaseActivity(),{presenterName}Contract.View "
                 "{\n"
                 "@Inject\n"
