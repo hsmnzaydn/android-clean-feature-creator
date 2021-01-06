@@ -6,6 +6,10 @@
 - Turkish
 - English
 
+### Önemli
+- View Model desteği kaldırıldı
+- Projenizin Dagger Hilt'i desteklemesi gerekmektedir
+
 ### Motivasyon
 
 Herkes güzel ve modüler kod yazmak istiyor ve bunun için çok fazla katman kurup her seferinde aynı kodu yazıyoruz. Bu yüzden gerek şirket projelerinde gerekse kişisel projelerde asıl odaklanmamız gereken yere odaklanamıyoruz. Ve her seferinde aynı sınıflara aynı klasörlere birbirine benzer dosyaları veya klasörleri oluşturuyoruz bu bir yerden sonra sıkıyor. Bu durumun önüne geçmek için **Python** ile bir script yazma kararı verdim.

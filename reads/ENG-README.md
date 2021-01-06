@@ -1,5 +1,9 @@
 # Creator Feature, ViewViewModel and ViewPresenter 
 
+### Important
+- ViewModel deprecated
+- Your project have to support Dagger Hilt
+
 ### Motivation
 When you are developing an application you want create a beautiful an architecture and compatible best practices. But if you have to create multiple layer for this. If you are working at dynamic company you have not time for create every time those layers you have to quickly get release. I decided fix this problem for this developed a python script.
 
